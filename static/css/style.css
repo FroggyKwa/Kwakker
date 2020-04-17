@@ -1,0 +1,102 @@
+*
+{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+}
+body
+{
+    background-color: #f7f7f7;
+}
+a
+{
+  text-decoration: none;
+}
+
+a:hover
+{
+  text-decoration: none;
+}
+
+.header, .footer
+{
+  position: fixed;
+  height: 50px;
+  width: 100%;
+  background-color: #35a175;
+}
+
+.logo
+{
+  user-select:none;
+  width: 500px;
+  float: left;
+  display: table;
+
+
+}
+
+.logo a
+{
+  color: #141414 !important;
+  font-family: "Marker Felt Thin";
+  font-size: 2.4em;
+  margin: 5px;
+}
+
+.logo img
+{
+  margin-left: 10px;
+  margin-bottom: 7px;
+}
+
+.footer
+{
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+}
+
+.footer img
+{
+  margin-left: 30px;
+  margin-top: 6px;
+}
+
+#info_button
+{
+  margin-right: 10px;
+  float: right;
+}
+
+#outer
+{
+    width: 100%;
+    margin-top: 0;
+    text-align: center;
+}
+
+.feed
+{
+  display: inline-block;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  padding: 10px;
+  background-color: #ebebeb;
+  width: 50%;
+  height: 100%;
+}
+
+.login_form
+{
+  width: 400px;
+  display: inline-block;
+}
+
+.form {
+     display: flex;
+     justify-content: center;
+}
