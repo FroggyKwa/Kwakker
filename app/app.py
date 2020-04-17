@@ -23,7 +23,7 @@ def feed():
 def registration():
     form = RegistrationForm()
     if form.validate_on_submit():
-        return render_template('feed.html')
+        return redirect('feed.html')
     return render_template('registration.html', form=form)
 
 
