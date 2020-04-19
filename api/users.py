@@ -6,12 +6,12 @@ from data.users import *
 
 
 class UserResource(Resource):
-    def add(self, nickname, name, surname, age, email, hashed_password):
+    def add(self, username, name, surname, age, email, hashed_password):
         session = db_session.create_session()
         user = User()
         user.email = email
         user.surname = surname
-        user.username = nickname
+        user.username = username
         user.name = name
         user.age = age
         user.hashed_password = hashed_password
@@ -30,8 +30,8 @@ class UserResource(Resource):
     def get(self, username):
         session = db_session.create_session()
         try:
-            user = session.query(User).filter(User.username == username)
-            return jsonify(user.to_dict)
+            user = session.query(User).filter(User.username == username).first()
+            return jsonify(user.to_dict())
         except Exception as e:
             print('User not found')
             print(e.__class__.__name__)

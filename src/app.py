@@ -8,7 +8,7 @@ from api import add_resources
 app = create_app()
 app.config['SECRET_KEY'] = 'secret_key'
 api = Api(app)
-add_resources(api)
+api = add_resources(api)
 db_session.global_init("../db/database.sqlite")
 
 
