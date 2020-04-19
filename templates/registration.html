@@ -7,7 +7,9 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
    crossorigin="anonymous">
-   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
   <title>Регистрация</title>
 </head>
 {% include "header.html" %}
@@ -36,10 +38,10 @@
         {% endfor %}
     </p>
     <p>
-        {{ form.surname.label }}<br>
+        <a href="#" data-toggle="tooltip" title="Необязательное поле">*</a>{{ form.surname.label }}<br>
         {{ form.surname(class="form-control") }}<br>
         {% for error in form.surname.errors %}
-    <div class="alert alert-danger" role="alert">
+    <div class="alert alert-danger reg-error" role="alert">
         {{ error }}
     </div>
         {% endfor %}
@@ -62,7 +64,7 @@
     </div>
     {% endfor %}
     </p>
-    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+    <p>{{ form.submit(type="submit", class="btn btn-primary reg_btn") }}</p>
 </form>
 </div>
 {% endblock %}

@@ -93,10 +93,27 @@ a:hover
 .login_form
 {
   width: 400px;
+  box-sizing: border-box;
+  padding: 10px;
   display: inline-block;
+  border-radius: 5px;
+  border: 2px dotted #35a175;
+  transition: all .4s ease;
+}
+
+.login_form:hover
+{
+  border-radius: 25px;
+  border: 2px solid #197751;
 }
 
 .form {
-     display: flex;
-     justify-content: center;
+  padding-top: 120px;
+  display: flex;
+  justify-content: center;
+}
+
+.reg_btn
+{
+  margin: 20px;
 }
