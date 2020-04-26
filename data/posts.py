@@ -3,7 +3,7 @@ import sqlalchemy
 from .db_session import SqlAlchemyBase
 
 
-class User(SqlAlchemyBase):
+class Posts(SqlAlchemyBase):
     __tablename__ = 'posts'
 
     id = sqlalchemy.Column(sqlalchemy.Integer,

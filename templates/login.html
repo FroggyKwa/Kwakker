@@ -1,1 +1,32 @@
 {% extends "base.html" %}
+{% block content %}
+<style>
+body
+{
+  background-color: #52a382;
+}
+p
+{
+  font-weight: bold;
+}
+</style>
+<div class="form">
+<form action="" method="post" class="login_form" novalidate>
+  <h1>Авторизация</h1>
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.username.label }}<br>
+        {{ form.username(class="form-control") }}<br>
+    </p>
+    <p>
+        {{ form.password.label }}<br>
+        {{ form.password(class="form-control", type="password") }}<br>
+    </p>
+    <p>
+        {{ form.remember_me.label }}<br>
+        {{ form.remember_me(class="form-check-label", type="checkbox") }}<br>
+    </p>
+    <p>{{ form.submit(type="submit", class="btn btn-primary login_btn") }}</p>
+</form>
+</div>
+{% endblock %}

@@ -17,10 +17,21 @@
   <div class="logo">
     <a href="/feed"><span>Kwakker</span><img src="{{ url_for('static', filename='img/logo.png') }}" width=50 alt="logo"></a>
   </div>
+  {% if not current_user.is_authenticated %}
+  <div class="auth_btns">
+    <a href="/login" id="sign_in_btn">Login</a>
+    <a href="/signup" id="sign_up_btn">Sign Up</a>
+  </div>
+  {% else %}
+  <div class="auth_btns">
+    <a href="/logout" id="sign_out_btn">Log Out</a>
+  </div>
+  {% endif %}
 </div>
 {% block content %}
 
 {% endblock %}
+{% if current_user.is_authenticated %}
 <div class="footer">
   <div class="buttons">
     <a href="#">
@@ -29,7 +40,7 @@
     <a href="#">
     <img src="{{ url_for('static', filename='img/write.png') }}" width=40 alt="">
     </a>
-    <a href="#">
+    <a href="{{ current_user.username }}">
     <img src="{{ url_for('static', filename='img/profile.png') }}" width=40 alt="">
     </a>
     <a href="#">
@@ -40,5 +51,6 @@
     </a>
   </div>
 </div>
+{% endif %}
 </body>
 </html>

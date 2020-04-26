@@ -1,30 +1,15 @@
 from flask import Flask, render_template, redirect, url_for
+from flask_login import LoginManager
 from flask_restful import reqparse, abort, Api, Resource
-from src import create_app
-from auth import *
-from data import db_session
 from api import add_resources
+from data import db_session
 
-app = create_app()
+db_session.global_init("db/db.sqlite")
+app = Flask(__name__, template_folder='../templates', static_folder='../static')
 app.config['SECRET_KEY'] = 'secret_key'
+app.debug = True
 api = Api(app)
 api = add_resources(api)
-db_session.global_init("../db/database.sqlite")
 
-
-def main():
-    app.run()
-
-
-@app.route('/')
-def index():
-    return redirect(url_for('feed'))
-
-
-@app.route('/feed')
-def feed():
-    return render_template('feed.html')
-
-
-if __name__ == '__main__':
-    main()
+login_manager = LoginManager()
+login_manager.init_app(app)
