@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
    crossorigin="anonymous">
@@ -18,13 +19,18 @@
     <a href="/feed"><span>Kwakker</span><img src="{{ url_for('static', filename='img/logo.png') }}" width=50 alt="logo"></a>
   </div>
   {% if not current_user.is_authenticated %}
-  <div class="auth_btns">
+  <div class="header-btns">
     <a href="/login" id="sign_in_btn">Login</a>
     <a href="/signup" id="sign_up_btn">Sign Up</a>
   </div>
   {% else %}
-  <div class="auth_btns">
+  <div class="header-btns">
     <a href="/logout" id="sign_out_btn">Log Out</a>
+  </div>
+  {% endif %}
+  {% if can_edit_profile %}
+  <div class="header-btns">
+    <a href="/edit_profile" id="edit_profile">Edit Profile</a>
   </div>
   {% endif %}
 </div>
@@ -40,7 +46,7 @@
     <a href="#">
     <img src="{{ url_for('static', filename='img/write.png') }}" width=40 alt="">
     </a>
-    <a href="{{ current_user.username }}">
+    <a href="/{{ current_user.username }}">
     <img src="{{ url_for('static', filename='img/profile.png') }}" width=40 alt="">
     </a>
     <a href="#">

@@ -47,7 +47,7 @@ a:hover
 
 .logo a
 {
-  color: #141414 !important;
+  color: #141414;
   font-family: "Marker Felt Thin";
   font-size: 2.4em;
   margin: 5px;
@@ -159,7 +159,7 @@ a:hover
   max-height: 300px;
 }
 
-.auth_btns
+.header-btns
 {
   width: auto;
   height: auto;
@@ -171,7 +171,7 @@ a:hover
   font-size: 1.1em;
 }
 
-#sign_in_btn, #sign_up_btn, #sign_out_btn
+#sign_in_btn, #sign_up_btn, #sign_out_btn, #edit_profile
 {
   color: #ebebeb;
   padding: 7px;
@@ -187,7 +187,6 @@ a:hover
   display: block;
   margin: auto;
   width: 250px;
-
 }
 
 #big-avatar img
@@ -199,4 +198,40 @@ a:hover
   border-radius: 50%;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
+}
+
+.profile-separator
+{
+  display: block;
+  margin: auto;
+  margin-top: 50px;
+  width: 27%;
+  height: 5px;
+  border-radius: 50%;
+  background: #197751;
+  font-size: 1.4em;
+}
+
+#status-block
+{
+  display: block;
+  margin: auto;
+  margin-top: 50px;
+  background-color: #def4e7;
+  width: 800px;
+  border-radius: 10px;
+}
+
+#status-text
+{
+  padding: 2%;
+  font-size: 1.4em;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#username
+{
+  padding-top: 2%;
+  font-size: 1.6em;
+  font-family: 'Montserrat', sans-serif;
 }

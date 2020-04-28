@@ -1,8 +1,6 @@
-import requests
-from flask import render_template, redirect, url_for, Blueprint, request, session
+from flask import render_template, redirect, url_for, Blueprint, request
 from flask_login import login_user, logout_user, login_required
 from flask_restful import abort
-from passlib.hash import sha256_crypt
 from app import login_manager
 from forms import RegistrationForm, LoginForm
 from data.db_session import create_session
@@ -25,7 +23,6 @@ def registration():
         user.name = form.name.data
         user.surname = form.surname.data
         # user.email = form.email.data # TODO: email verification
-        # user.password = str(sha256_crypt.encrypt((str(form.password.data))))  # TODO: DON'T SAVE TO DB
         user.set_password(form.password.data)
         session = create_session()
         session.add(user)
@@ -81,13 +78,15 @@ def feed():
 @bp.route('/<username>')
 def profile(username):
     if get_user_by_username(username):
-        return render_template('profile.html', image=f'{current_user.username}.gif')
+        return render_template('profile.html', image=f'{current_user.username}.gif', status='Hello, world',
+                               can_edit_profile=True)
     else:
         abort(404)
 
-# @bp.errorhandler(404)
-# def page_not_found(e):
-#     return render_template('404.html'), 404 TODO: MAKE THE 404 PAGE
+
+@bp.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 
 @login_manager.user_loader

@@ -3,9 +3,17 @@
 {% block content %}
 
 <div class="page-body">
+
   <div class="profile-avatar" id="big-avatar">
     <img src="static/img/avatar.gif" alt="">
   </div>
-  <hr id="profile-separator">
+  <div id="username">
+    <h3 style="text-align: center;">{{ current_user.name }} {{ current_user.surname }}</h3>
+  </div>
+  <hr class="profile-separator">
+  <div id="status-block">
+    <p id="status-text">{{ status }}</p>
+  </div>
+  <hr class="profile-separator" style="width: 75%">
 </div>
 {% endblock %}
