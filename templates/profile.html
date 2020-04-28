@@ -7,12 +7,12 @@
   <div class="profile-avatar" id="big-avatar">
     <img src="static/img/avatar.gif" alt="">
   </div>
-  <div id="username">
-    <h3 style="text-align: center;">{{ current_user.name }} {{ current_user.surname }}</h3>
+  <div id="profile-text" class="username">
+    <h3>{{ user.name }} {{ user.surname }}</h3>
+    <h3 style="font-size: 1em;">@{{ user.username }}</h3>
   </div>
-  <hr class="profile-separator">
   <div id="status-block">
-    <p id="status-text">{{ status }}</p>
+    <p id="profile-text">Hello, world!</p>
   </div>
   <hr class="profile-separator" style="width: 75%">
 </div>

@@ -206,7 +206,7 @@ a:hover
   margin: auto;
   margin-top: 50px;
   width: 27%;
-  height: 5px;
+  height: 1px;
   border-radius: 50%;
   background: #197751;
   font-size: 1.4em;
@@ -222,16 +222,17 @@ a:hover
   border-radius: 10px;
 }
 
-#status-text
+#profile-text
 {
   padding: 2%;
   font-size: 1.4em;
   font-family: 'Montserrat', sans-serif;
 }
 
-#username
+.username
 {
   padding-top: 2%;
   font-size: 1.6em;
   font-family: 'Montserrat', sans-serif;
+  text-align: center;
 }
