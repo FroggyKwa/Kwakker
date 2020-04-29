@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, validators, TextAreaField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, validators, TextAreaField, IntegerField
 from wtforms.validators import DataRequired, EqualTo
 
 
@@ -21,8 +21,10 @@ class LoginForm(FlaskForm):
 
 
 class EditProfileForm(FlaskForm):
-    username = StringField('Login', validators=[validators.Length(max=32)])
-    name = TextAreaField('Name', validators=[validators.Length(min=4, max=20)])
-    surname = StringField('Surname', validators=[validators.Length(min=4, max=25)])
-    status = StringField('Status', validators=[validators.Length(max=128)])
-    password = PasswordField('Password', validators=[validators.Length(min=6, max=64)])
+    username = StringField('Login')
+    name = StringField('Name')
+    surname = StringField('Surname')
+    age = IntegerField('Age')
+    status = TextAreaField('Status')
+    password = PasswordField('Password')
+    submit = SubmitField('Save')
