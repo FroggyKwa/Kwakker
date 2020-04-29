@@ -1,16 +1,14 @@
-from flask import render_template, redirect, url_for, Blueprint, request
+from flask import render_template, redirect, Blueprint, request
 from flask_login import login_user, logout_user, login_required
-from flask_restful import abort
-from app import login_manager
 from forms import RegistrationForm, LoginForm
 from data.db_session import create_session
 from data.users import User, get_user_by_username
 from flask_login import current_user
 
-bp = Blueprint('auth', __name__, template_folder='../templates')
+auth_bp = Blueprint('auth', __name__, template_folder='../templates')
 
 
-@bp.route('/signup', methods=['GET', 'POST'])
+@auth_bp.route('/signup', methods=['GET', 'POST'])
 def registration():
     if current_user.is_authenticated:
         return redirect('/feed')
@@ -37,7 +35,7 @@ def registration():
     return render_template('registration.html', form=form)
 
 
-@bp.route('/login', methods=['GET', 'POST'])
+@auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         return redirect('/feed')
@@ -56,40 +54,10 @@ def login():
     return render_template('login.html', form=form)
 
 
-@bp.route("/logout")
+@auth_bp.route("/logout")
 @login_required
 def logout():
     logout_user()
     return redirect('/feed')
 
 
-@bp.route('/')
-def index():
-    return redirect(url_for('auth.feed'))
-
-
-@bp.route('/feed')
-def feed():
-    if not current_user.is_authenticated:
-        return redirect(url_for('auth.login'))
-    return render_template('feed.html')
-
-
-@bp.route('/<username>')
-def profile(username):
-    if get_user_by_username(username):
-        return render_template('profile.html', image=f'{current_user.username}.gif', status='Hello, world',
-                               can_edit_profile=True)
-    else:
-        abort(404)
-
-
-@bp.errorhandler(404)
-def page_not_found(e):
-    return render_template('404.html'), 404
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    session = create_session()
-    return session.query(User).get(user_id)
