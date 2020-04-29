@@ -11,6 +11,20 @@ from data.users import get_user_by_username, User
 blueprint = Blueprint('views', __name__, template_folder='../templates')
 
 
+@blueprint.route('/post')
+def post():
+    return render_template('post.html',
+                           db_id=1,
+                           author='denchik',
+                           created_at='20.04.2020',
+                           content='Lorem ipsum dolor sit amet, '
+                                   'consectetur adipiscing elit, sed do'
+                                   ' eiusmod tempor incididunt ut labore et'
+                                   ' dolore magna aliqua. Ut enim ad',
+                           likes=1337,
+                           tags=['#web', '#cool'])
+
+
 @blueprint.route('/')
 def index():
     return redirect(url_for('views.feed'))
@@ -63,9 +77,11 @@ def edit_profile():
 
     return render_template('edit_profile.html', form=form)
 
+
 @blueprint.route('/post')
 def post():
     return render_template('post.html')
+
 
 @blueprint.errorhandler(404)
 def page_not_found(e):
