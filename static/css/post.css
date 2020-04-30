@@ -1,0 +1,31 @@
+*
+{
+  font-family: 'Montserrat', sans-serif;
+}
+
+.round {
+border-radius: 50%;
+border: 3px solid #197751;
+}
+
+.post
+{
+  background-color: #def4e7;
+  border-radius: 10px;
+  border: 3px solid #197751;
+  margin-top: 10%;
+  font-family: 'Montserrat', sans-serif;
+  width: 500px;
+  height: auto;
+}
+#likes {
+  color: #393939;
+  padding: 5px;
+  font-family: 'Montserrat', sans-serif;
+}
+.post-header {
+  vertical-align: bottom;
+  color: #393939;
+  padding: 10px;
+  font-family: 'Montserrat', sans-serif;
+}
