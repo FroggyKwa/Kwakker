@@ -4,25 +4,12 @@ from flask_restful import abort
 
 from data import db_session
 from data.db_session import create_session
-from forms import EditProfileForm
+from data.posts import Post
+from forms import EditProfileForm, AddPostForm
 from app import login_manager
 from data.users import get_user_by_username, User
 
 blueprint = Blueprint('views', __name__, template_folder='../templates')
-
-
-@blueprint.route('/post')
-def post():
-    return render_template('post.html',
-                           db_id=1,
-                           author='denchik',
-                           created_at='20.04.2020',
-                           content='Lorem ipsum dolor sit amet, '
-                                   'consectetur adipiscing elit, sed do'
-                                   ' eiusmod tempor incididunt ut labore et'
-                                   ' dolore magna aliqua. Ut enim ad',
-                           likes=1337,
-                           tags=['#web', '#cool'])
 
 
 @blueprint.route('/')
@@ -78,9 +65,24 @@ def edit_profile():
     return render_template('edit_profile.html', form=form)
 
 
-@blueprint.route('/post')
-def post():
-    return render_template('post.html')
+@login_required
+@blueprint.route('/add_post', methods=['POST', 'GET'])
+def add_post():
+    if not current_user.is_authenticated:
+        return redirect('auth.login')
+    form = AddPostForm()
+    content = form.content.data
+    if request.method == 'POST' and content:
+        session = db_session.create_session()
+        post = Post()
+        post.content = content
+        post.author = current_user.id
+        post.likes = 0
+        post.tags = ''
+        session.add(post)
+        session.commit()
+        print('OK')
+    return render_template('add_post.html', form=form)
 
 
 @blueprint.errorhandler(404)

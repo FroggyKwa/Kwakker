@@ -28,3 +28,8 @@ class EditProfileForm(FlaskForm):
     status = TextAreaField('Status')
     password = PasswordField('Password')
     submit = SubmitField('Save')
+
+
+class AddPostForm(FlaskForm):
+    content = TextAreaField('Content')
+    submit = SubmitField('Add Post')

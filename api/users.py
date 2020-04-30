@@ -32,9 +32,7 @@ class UserResource(Resource):
         try:
             user = session.query(User).filter(User.username == username).first()
             return jsonify(user.to_dict())
-        except Exception as e:
-            print('User not found')
-            print(e.__class__.__name__)
+        except AttributeError:
             return jsonify({'error': 404})  # user not found
 
 
