@@ -4,7 +4,9 @@ from flask_restful import abort
 
 from data import db_session
 from data.db_session import create_session
+from data.likes import Like
 from data.posts import Post
+from data.tags import Tags
 from forms import EditProfileForm, AddPostForm, SearchPostsForm
 from app import login_manager
 from data.users import get_user_by_username, User
@@ -83,8 +85,7 @@ def add_post():
         session = db_session.create_session()
         post = Post(user=session.query(User).get(current_user.id))
         post.content = content
-        post.likes = 0
-        post.tags = ''
+        # post.tags = ''
         session.add(post)
         session.commit()
     return render_template('add_post.html', form=form)

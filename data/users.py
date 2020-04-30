@@ -11,12 +11,11 @@ from .db_session import SqlAlchemyBase, create_session
 
 class User(SqlAlchemyBase, UserMixin, SerializerMixin):
     __tablename__ = 'users'
-
     id = sqlalchemy.Column(sqlalchemy.Integer,
                            primary_key=True, autoincrement=True)
-    username = sqlalchemy.Column(sqlalchemy.String, nullable=False, unique=True)
     name = sqlalchemy.Column(sqlalchemy.String, nullable=False)
     surname = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    username = sqlalchemy.Column(sqlalchemy.String, nullable=False, unique=True)
     status = sqlalchemy.Column(sqlalchemy.Text, default='')
     age = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
     email = sqlalchemy.Column(sqlalchemy.String,
@@ -24,7 +23,8 @@ class User(SqlAlchemyBase, UserMixin, SerializerMixin):
     hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     created_at = sqlalchemy.Column(sqlalchemy.DateTime,
                                    default=datetime.datetime.now)
-    posts = relationship('Post', lazy='dynamic', back_populates="user")
+    likes = relationship('Like', back_populates="user")
+    posts = relationship('Post', back_populates="user")
 
     def set_password(self, password):
         self.hashed_password = generate_password_hash(password, method='sha256')
