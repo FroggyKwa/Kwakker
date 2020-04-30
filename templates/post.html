@@ -1,62 +1,13 @@
-<!DOCTYPE HTML PUBLIC>
-<html>
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>Посты</title>
-  <style type="text/css">
-   TD.leftcol {
-    width: 60px; /* Ширина левой колонки с рисунком */
-    vertical-align: top; /* Выравнивание по верхнему краю */
-   }
-  </style>
-     <style>
-   .round {
-    border-radius: 100px; /* Радиус скругления */
-    border: 3px solid green; /* Параметры рамки */
-    box-shadow: 0 0 7px #666; /* Параметры тени */
-   }
-  </style>
-     <style>
-   p {
-   background: #D9FFAD;
-   border-radius: 100px; /* Радиус скругления */
-    border: 3px solid green;
-    padding: 10px;
-    font-family: 'Montserrat', sans-serif;
-    width: 500px;
-    height: auto;
-   }
-  </style>
-     <style>
-   likes {
-   color: gray;
-    padding: 5px;
-    font-family: 'Montserrat', sans-serif;
-   }
-  </style>
-     <style>
-   name {
-   color: black;
-    padding: 10px;
-    font-family: 'Montserrat', sans-serif;
-   }
-  </style>
-     <style>
-   date {
-   color: gray;
-    padding: 10px;
-    font-family: 'Montserrat', sans-serif;
-   }
-  </style>
- </head>
- <body>
-  <img src="static/img/avatar.gif " class="round"
-    width="50" height="50" alt="">
-    <name valign="bottom" >{{ author }} </name><date valign="bottom" > post.date 22.05.2020 </date>
-
-
-
- <p>post.content</p>
- <likes id="text">Лайки: {{post.likes}}</likes>
- </body>
-</html>
+<div class="post">
+<img src="static/img/avatars/{{  avatar_path  }}" class="round"
+  width="50" height="50" alt="">
+  <div class="post-header">
+  {{ post.user.name }}
+  {{ post.user.surname }}
+  <br>
+  {{  post.created_at  }}
+  <hr>
+</div>
+<p>{{  post.content  }}</p>
+<div id="likes">Лайки: {{  post.likes  }}</div>
+</div>

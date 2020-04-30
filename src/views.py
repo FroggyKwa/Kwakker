@@ -17,6 +17,13 @@ def index():
     return redirect(url_for('views.feed'))
 
 
+@blueprint.route('/post')
+def post_test():
+    session = create_session()
+    post = session.query(Post).first()
+    return render_template('post.html', post=post)
+
+
 @login_required
 @blueprint.route('/feed')
 def feed():
@@ -99,6 +106,7 @@ def search(query=''):
 @blueprint.route('/team')
 def about():
     return render_template('about.html')
+
 
 @blueprint.errorhandler(404)
 def page_not_found(e):

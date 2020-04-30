@@ -29,10 +29,10 @@ class UserResource(Resource):
 
     def get(self, username):
         session = db_session.create_session()
+        user = session.query(User).filter(User.username == username).first()
         try:
-            user = session.query(User).filter(User.username == username).first()
-            return jsonify(user.to_dict(rules='password'))
-        except AttributeError:
+            return jsonify(user.to_dict(only=('id', 'username', 'name', 'surname', 'created_at')))
+        except Exception as e:
             return jsonify({'error': 404})  # user not found
 
 
