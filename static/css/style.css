@@ -38,7 +38,7 @@ a:hover
 .logo
 {
   user-select:none;
-  width: 500px;
+  width: 20%;
   float: left;
   display: table;
 
@@ -50,7 +50,7 @@ a:hover
   color: #141414;
   font-family: "Marker Felt Thin";
   font-size: 2.4em;
-  margin: 5px;
+  padding-left: 1%;
 }
 
 .logo img
@@ -80,10 +80,8 @@ a:hover
   float: right;
 }
 
-#outer
+.outer
 {
-    width: 100%;
-    margin-top: 0;
     text-align: center;
 }
 
@@ -101,13 +99,16 @@ a:hover
 .green-form
 {
   background-color: #86c1a9;
-  width: 400px;
+  width: auto;
   box-sizing: border-box;
   padding: 10px;
   display: inline-block;
   border-radius: 5px;
   border: 2px dotted #35a175;
   transition: all .4s ease;
+  box-sizing: content-box;
+  padding-left: 2%;
+  padding-right: 2%;
 }
 
 .login_form:hover
@@ -125,10 +126,10 @@ a:hover
 
 .reg_btn, .login_btn
 {
-  margin-left: 22.5%;
+  margin: auto;
   text-decoration: none;
   outline: none;
-  display: inline-block;
+  display: block;
   width: 210px;
   height: 45px;
   line-height: 45px;
@@ -182,19 +183,19 @@ a:hover
   overflow: hidden;
 }
 
-#big-avatar
+.big-avatar
 {
   display: block;
   margin: auto;
   width: 250px;
 }
 
-#big-avatar img
+.big-avatar img
 {
-  margin-top: 100px;
   display: block;
   border: 10px solid #197751;
   width: 100%;
+  height: auto;
   border-radius: 50%;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -249,4 +250,41 @@ a:hover
 {
 padding-top: 10%;
 background-color: #def4e7;
+}
+
+#search-input
+{
+  width: 50em;
+}
+
+.page-block
+{
+  border-radius: 10px;
+  display: inline-block;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  padding: 10px;
+  background-color: #71b68d;
+  width: 50%;
+}
+
+#about-separator
+{
+  overflow: visible;
+  padding: 0;
+  border: none;
+  border-top: medium double #333;
+  color: #333;
+  text-align: center;
+}
+
+#about-separator::after
+{
+  content: "♡";
+  display: inline-block;
+  position: relative;
+  top: -0.7em;
+  font-size: 1.5em;
+  padding: 0 0.25em;
+  background-color: #71b68d;
 }

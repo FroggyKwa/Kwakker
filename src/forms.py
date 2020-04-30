@@ -33,3 +33,8 @@ class EditProfileForm(FlaskForm):
 class AddPostForm(FlaskForm):
     content = TextAreaField('Content')
     submit = SubmitField('Add Post')
+
+
+class SearchPostsForm(FlaskForm):
+    query = StringField('Query')
+    submit = SubmitField('Search')

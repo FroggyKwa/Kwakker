@@ -16,7 +16,7 @@
 <body>
 <div class="header">
   <div class="logo">
-    <a href="/feed"><span>Kwakker</span><img src="{{ url_for('static', filename='img/logo.png') }}" width=50 alt="logo"></a>
+    <a href="/"><span>Kwakker</span><img src="{{ url_for('static', filename='img/logo.png') }}" width=50 alt="logo"></a>
   </div>
   {% if not current_user.is_authenticated %}
   <div class="header-btns">
@@ -40,19 +40,19 @@
 {% if current_user.is_authenticated %}
 <div class="footer">
   <div class="buttons">
-    <a href="#">
+    <a href="/feed">
     <img src="{{ url_for('static', filename='img/news.png') }}" width=40 alt="">
     </a>
     <a href="/add_post">
     <img src="{{ url_for('static', filename='img/write.png') }}" width=40 alt="">
     </a>
+    <a href="/search">
+    <img src="{{ url_for('static', filename='img/search.png') }}" width=40 alt="">
+    </a>
     <a href="/{{ current_user.username }}">
     <img src="{{ url_for('static', filename='img/profile.png') }}" width=40 alt="">
     </a>
-    <a href="#">
-    <img src="{{ url_for('static', filename='img/search.png') }}" width=40 alt="">
-    </a>
-    <a id="info_button" href="#">
+    <a id="info_button" href="/team">
     <img src="{{ url_for('static', filename='img/info.png') }}" width=40 alt="">
     </a>
   </div>

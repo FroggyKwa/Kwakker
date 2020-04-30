@@ -5,7 +5,7 @@ from flask_restful import abort
 from data import db_session
 from data.db_session import create_session
 from data.posts import Post
-from forms import EditProfileForm, AddPostForm
+from forms import EditProfileForm, AddPostForm, SearchPostsForm
 from app import login_manager
 from data.users import get_user_by_username, User
 
@@ -82,6 +82,23 @@ def add_post():
         session.commit()
     return render_template('add_post.html', form=form)
 
+
+@login_required
+@blueprint.route('/search', methods=['GET', 'POST'])
+@blueprint.route('/search/<query>', methods=['GET', 'POST'])
+def search(query=''):
+    form = SearchPostsForm()
+    if request.method == 'POST':
+        if query:
+            hash_tags = query.split('&')
+            pass  # отобразить список постов с хэштэгами hash_tags
+        return redirect(f'/search/{form.query.data}')
+    return render_template('search.html', form=form, query=query)
+
+
+@blueprint.route('/team')
+def about():
+    return render_template('about.html')
 
 @blueprint.errorhandler(404)
 def page_not_found(e):
