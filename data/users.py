@@ -1,4 +1,6 @@
 import datetime
+
+from sqlalchemy.orm import relationship
 from werkzeug.security import generate_password_hash, check_password_hash
 import sqlalchemy
 from flask_restful import abort
@@ -22,6 +24,7 @@ class User(SqlAlchemyBase, UserMixin, SerializerMixin):
     hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     created_at = sqlalchemy.Column(sqlalchemy.DateTime,
                                    default=datetime.datetime.now)
+    posts = relationship('Post', lazy='dynamic', back_populates="user")
 
     def set_password(self, password):
         self.hashed_password = generate_password_hash(password, method='sha256')

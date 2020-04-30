@@ -1,0 +1,16 @@
+{% for post in posts %}
+<div class="post" db_id={{ db_id }}>
+    <img src="">
+    <h1 class="author">{{ post.user.name }} {{ post.user.surname }}</h1>
+    <h6>{{ post.created_at }}</h6>
+    <div>{{ post.content }}</div>
+    <div>{{ post.likes }}</div>
+    <div>
+        <p>Теги:
+        {% for tag in post.tags %}
+            {{ tag }}
+        {% endfor %}
+        </p>
+    </div>
+</div>
+{% endfor %}

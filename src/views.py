@@ -74,14 +74,12 @@ def add_post():
     content = form.content.data
     if request.method == 'POST' and content:
         session = db_session.create_session()
-        post = Post()
+        post = Post(user=session.query(User).get(current_user.id))
         post.content = content
-        post.author = current_user.id
         post.likes = 0
         post.tags = ''
         session.add(post)
         session.commit()
-        print('OK')
     return render_template('add_post.html', form=form)
 
 

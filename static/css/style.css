@@ -244,3 +244,9 @@ a:hover
   font-family: 'Montserrat', sans-serif;
   text-align: center;
 }
+
+.post
+{
+padding-top: 10%;
+background-color: #def4e7;
+}

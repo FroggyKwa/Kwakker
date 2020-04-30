@@ -31,7 +31,7 @@ class UserResource(Resource):
         session = db_session.create_session()
         try:
             user = session.query(User).filter(User.username == username).first()
-            return jsonify(user.to_dict())
+            return jsonify(user.to_dict(rules='password'))
         except AttributeError:
             return jsonify({'error': 404})  # user not found
 
