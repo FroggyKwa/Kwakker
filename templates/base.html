@@ -20,7 +20,7 @@
 <body>
 <div class="header">
   <div class="logo">
-    <a href="/"><span>Kwakker</span><img src="{{ url_for('static', filename='img/logo.png') }}" width=50 alt="logo"></a>
+    <a href="/" id="logo-link">Kwakker<img src="{{ url_for('static', filename='img/logo.png') }}" width=50 alt="logo"></a>
   </div>
   {% if not current_user.is_authenticated %}
   <div class="header-btns">

@@ -29,7 +29,7 @@ class EditProfileForm(FlaskForm):
     age = IntegerField('Age')
     status = TextAreaField('Status')
     password = PasswordField('Password')
-    avatar = FileField('File Upload', validators=[FileRequired()])
+    avatar = FileField('File Upload')
     submit = SubmitField('Save')
 
 

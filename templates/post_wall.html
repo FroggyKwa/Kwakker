@@ -1,0 +1,17 @@
+{% for post in posts %}
+<div class="post" db_id="{{ post.id }}"  {% if loop.last %} id="last" {% endif %}>
+    <img src="{{ post.user.avatar_path }}" class="round"
+    width="50" height="50" alt="">
+    <div class="post-header">
+        {{ post.user.name }}
+        {{ post.user.surname }}
+        <br>
+        {{  post.created_at  }}
+        <hr>
+    </div>
+    <p>{{  post.content  }}</p>
+    <hr>
+    <div id="likes">Лайки: {{  post.likes|length  }}</div>
+</div>
+
+{% endfor %}

@@ -74,6 +74,7 @@ def edit_profile():
             file = form.avatar.data
             filename = secure_filename(file.filename)
             user.avatar_path = 'static/img/avatars/' + filename
+            print(user.avatar_path)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         session.commit()
         return redirect(f'/{current_user.username}')

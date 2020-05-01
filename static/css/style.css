@@ -44,7 +44,10 @@ a:hover
 
 
 }
-
+#logo-link
+{
+  font-family: 'Permanent Marker', cursive !important;
+}
 .logo a
 {
   color: #141414;
