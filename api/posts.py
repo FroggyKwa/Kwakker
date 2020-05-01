@@ -48,6 +48,6 @@ class PostListResource(Resource):
 def abort_if_post_not_found(post_id):
     from data.db_session import create_session
     session = create_session()
-    user = session.query(Post).get(post_id)
-    if not user:
+    post = session.query(Post).get(post_id)
+    if not post:
         abort(404, message=f"Post {post_id} not found")
