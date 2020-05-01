@@ -181,24 +181,21 @@ a:hover
 .profile-avatar
 {
   overflow: hidden;
-}
-
-.big-avatar
-{
-  display: block;
-  margin: auto;
-  width: 250px;
-}
-
-.big-avatar img
-{
-  display: block;
-  border: 10px solid #197751;
-  width: 100%;
-  height: auto;
   border-radius: 50%;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
+  border: 5px solid #197751;
+  background-size: auto 100px;
+
+}
+
+#big-avatar
+{
+  padding-top: 5%;
+  display: block;
+  margin:auto;
+  width: 300px;
+  height: 300px;
 }
 
 .profile-separator
@@ -224,6 +221,14 @@ a:hover
 }
 
 #profile-text
+{
+  padding: 2%;
+  padding-top: 7%;
+  font-size: 1.4em;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#status-text
 {
   padding: 2%;
   font-size: 1.4em;
