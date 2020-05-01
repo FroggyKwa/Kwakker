@@ -9,16 +9,12 @@ function load_feed()
     }
     else
     {
-        var last_id = '10';
+        var last_id = '-1';
     }
 
-    var btn = document.getElementById("btn");
-    delete btn;
-
-    var new_posts = jQuery.ajax('/api/v01/posts/' + last_id); //todo: Ilyaaaaa help
-    //new_posts = JSON.parse(new_posts);
-    alert(new_posts)
-
-    element.innerHTML = element.innerHTML + new_posts["message"]; //innerhtml - то что написано внутри тега
-    element.innerHTML = element.innerHTML + "<button id='btn' onclick='load_feed()'>Загрузить еще</button>";
-}
+    var new_posts = jQuery.ajax('/api/v01/posts/' + last_id, {
+        success: function(){
+                                element.innerHTML = element.innerHTML + new_posts.responseJSON; //innerhtml - то что написано внутри тега
+                            }
+    }); //todo: Ilyaaaaa help
+    }
