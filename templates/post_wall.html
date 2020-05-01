@@ -1,5 +1,5 @@
 {% for post in posts %}
-<div class="post" db_id={{ db_id }}>
+<div class="post" db_id={{ post.id }} {% if loop.last %} id="last" {% endif %}>
     <img src="">
     <h1 class="author">{{ post.user.name }} {{ post.user.surname }}</h1>
     <h6>{{ post.created_at }}</h6>
