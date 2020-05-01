@@ -42,8 +42,6 @@ class PostListResource(Resource):
         post_id = int(post_id)
         session = db_session.create_session()
         posts = session.query(Post)[-20:post_id]
-        for post in posts:
-            print(post.user)
         return render_template('post_wall.html', posts=posts)
 
 

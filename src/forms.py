@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, validators, TextAreaField, IntegerField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, validators, TextAreaField, IntegerField, \
+    FileField
 from wtforms.validators import DataRequired, EqualTo
 
 
@@ -27,6 +28,7 @@ class EditProfileForm(FlaskForm):
     age = IntegerField('Age')
     status = TextAreaField('Status')
     password = PasswordField('Password')
+    avatar = FileField('File Upload')
     submit = SubmitField('Save')
 
 

@@ -29,7 +29,17 @@ p
     <p>
         {{ form.password(class="form-control", type="password", placeholder="Password") }}<br>
     </p>
-    <p>{{ form.submit(type="submit", class="btn btn-primary login_btn") }}</p>
+    <p class="custom-file">
+        {{ form.avatar(class="custom-file-input", id="customFile", type="file") }}<br>
+        <label class="custom-file-label" for="customFile">Choose file</label>
+    </p>
+  <script>
+    $(".custom-file-input").on("change", function() {
+      var fileName = $(this).val().split("\\").pop();
+      $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+  </script>
+    <p id="btn-container">{{ form.submit(type="submit", class="btn btn-primary edit_btn") }}</p>
 </form>
 </div>
 {% endblock %}

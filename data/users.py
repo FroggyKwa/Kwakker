@@ -21,6 +21,7 @@ class User(SqlAlchemyBase, UserMixin, SerializerMixin):
     email = sqlalchemy.Column(sqlalchemy.String,
                               index=True, unique=True, nullable=True)
     hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    avatar_path = sqlalchemy.Column(sqlalchemy.String, default='/static/img/avatars/default.jpg')
     created_at = sqlalchemy.Column(sqlalchemy.DateTime,
                                    default=datetime.datetime.now)
     likes = relationship('Like', back_populates="user")

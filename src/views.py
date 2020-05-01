@@ -1,12 +1,11 @@
 from flask import render_template, redirect, url_for, Blueprint, request
 from flask_login import login_required, current_user
 from flask_restful import abort
+from werkzeug.utils import secure_filename
 
 from data import db_session
 from data.db_session import create_session
-from data.likes import Like
 from data.posts import Post
-from data.tags import Tags
 from forms import EditProfileForm, AddPostForm, SearchPostsForm
 from app import login_manager
 from data.users import get_user_by_username, User
@@ -50,7 +49,7 @@ def profile(username):
 @blueprint.route('/edit', methods=['GET', 'POST'])
 def edit_profile():
     if not current_user.is_authenticated:
-        return redirect('auth.login')
+        return redirect('/login')
     form = EditProfileForm()
     if form.validate() and request.method == 'POST':
         print('hello')
@@ -69,8 +68,13 @@ def edit_profile():
             user.age = form.age.data
         if form.status.data:
             user.status = form.status.data
+        if form.avatar.data:
+            file = form.avatar.data
+            filename = secure_filename(file.filename)
+            file.save('/static/img/avatars/' + filename)
+            user.avatar_path = '/static/img/avatars/' + filename
         session.commit()
-
+        return redirect(f'/{current_user.username}')
     return render_template('edit_profile.html', form=form)
 
 
@@ -78,7 +82,7 @@ def edit_profile():
 @blueprint.route('/add_post', methods=['POST', 'GET'])
 def add_post():
     if not current_user.is_authenticated:
-        return redirect('auth.login')
+        return redirect('/login')
     form = AddPostForm()
     content = form.content.data
     if request.method == 'POST' and content:
