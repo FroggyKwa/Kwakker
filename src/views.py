@@ -1,3 +1,5 @@
+import os
+
 from flask import render_template, redirect, url_for, Blueprint, request
 from flask_login import login_required, current_user
 from flask_restful import abort
@@ -7,10 +9,11 @@ from data import db_session
 from data.db_session import create_session
 from data.posts import Post
 from forms import EditProfileForm, AddPostForm, SearchPostsForm
-from app import login_manager
+from app import login_manager, app
 from data.users import get_user_by_username, User
 
 blueprint = Blueprint('views', __name__, template_folder='../templates')
+
 
 
 @blueprint.route('/')
@@ -52,12 +55,10 @@ def edit_profile():
         return redirect('/login')
     form = EditProfileForm()
     if form.validate() and request.method == 'POST':
-        print('hello')
         session = db_session.create_session()
         user = session.query(User).get(current_user.id)
         if form.username.data and len(form.username.data) >= 3:
             user.username = form.username.data
-            print('hello, world')
         if form.password.data and len(form.password.data) >= 6:
             user.password = form.password.data
         if form.surname.data:
@@ -69,10 +70,11 @@ def edit_profile():
         if form.status.data:
             user.status = form.status.data
         if form.avatar.data:
+            print(form.avatar.data)
             file = form.avatar.data
             filename = secure_filename(file.filename)
-            file.save('/static/img/avatars/' + filename)
-            user.avatar_path = '/static/img/avatars/' + filename
+            user.avatar_path = 'static/img/avatars/' + filename
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         session.commit()
         return redirect(f'/{current_user.username}')
     return render_template('edit_profile.html', form=form)

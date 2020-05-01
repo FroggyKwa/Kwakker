@@ -48,9 +48,13 @@ a:hover
 .logo a
 {
   color: #141414;
-  font-family: 'Permanent Marker', cursive;
   font-size: 2.4em;
   padding-left: 1%;
+}
+
+#logo-link
+{
+  font-family: 'Permanent Marker', cursive !important;
 }
 
 .logo img
