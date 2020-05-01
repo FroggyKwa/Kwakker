@@ -43,7 +43,7 @@ class PostListResource(Resource):
         session = db_session.create_session()
         left_border = (post_id - 20) if post_id - 20 > 0 else 0
         right_border = post_id
-        posts = session.query(Post).slice(left_border, right_border)
+        posts = session.query(Post).slice(left_border, right_border)[::-1]
         return render_template('post_wall.html', posts=posts)
 
 

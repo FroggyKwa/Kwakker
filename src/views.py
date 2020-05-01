@@ -77,7 +77,7 @@ def edit_profile():
             print(user.avatar_path)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         session.commit()
-        return redirect(f'/{current_user.username}')
+        return redirect(f'/{current_user.username if not form.username.data else form.username.data}')
     return render_template('edit_profile.html', form=form)
 
 
