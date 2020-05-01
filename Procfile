@@ -1,1 +1,1 @@
-web: python run_server.py
+web: gunicorn --bind localhost:80 run_server:app
