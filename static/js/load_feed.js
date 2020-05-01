@@ -4,5 +4,6 @@ var last_id = last_post.db_id;
 delete last_post.id;
 
 var new_posts = jQuery.ajax('localhost:5000/api/v01/posts/' + last_id); //todo: Ilyaaaaa help
+new_posts = JSON.parse(new_posts)
 
 element.innerHTML = element.innerHTML + new_posts; //innerhtml - то что написано внутри тега
