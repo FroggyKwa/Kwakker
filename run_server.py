@@ -1,8 +1,8 @@
 import os
 
-from app import app
-from auth import auth_bp
-from views import blueprint
+from src.app import app
+from src.auth import auth_bp
+from src.views import blueprint
 
 app.register_blueprint(auth_bp)
 app.register_blueprint(blueprint)

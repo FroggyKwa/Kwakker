@@ -1,6 +1,6 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask
 from flask_login import LoginManager
-from flask_restful import reqparse, abort, Api, Resource
+from flask_restful import Api
 from api import add_resources
 from data import db_session
 
