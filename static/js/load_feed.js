@@ -5,7 +5,7 @@ function load_feed()
     if (last_post != null)
     {
         var last_id = last_post.db_id;
-        delete last_post.id;
+
     }
     else
     {
@@ -15,6 +15,7 @@ function load_feed()
     var new_posts = jQuery.ajax('/api/v01/posts/' + last_id, {
         success: function(){
                                 element.innerHTML = element.innerHTML + new_posts.responseJSON; //innerhtml - то что написано внутри тега
+                                last_post.id = '';
                             }
     }); //todo: Ilyaaaaa help
     }
