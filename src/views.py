@@ -41,8 +41,7 @@ def profile(username):
     user = get_user_by_username(username)
     if user:
         return render_template('profile.html',
-                               image=f'{current_user.username}.gif',
-                               can_edit_profile=True,
+                               can_edit_profile=current_user.is_authenticated,
                                user=user)
     else:
         abort(404)
