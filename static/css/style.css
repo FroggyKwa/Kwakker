@@ -2,6 +2,7 @@
 {
   padding: 0;
   margin: 0;
+  text-decoration: none;
   list-style: none;
 
 }
@@ -16,13 +17,13 @@ body
   background: #1fab8d;
 }
 
-a
+a, button
 {
   text-decoration: none;
   user-select: none;
 }
 
-a:hover
+a:hover, button:hover
 {
   text-decoration: none;
 }
@@ -30,24 +31,25 @@ a:hover
 .header, .footer
 {
   position: fixed;
-  height: 50px;
+  height: 5.5%;
   width: 100%;
   background-color: #35a175;
 }
 
 .logo
 {
+  width: 50%;
   user-select:none;
-  width: 20%;
   float: left;
   display: table;
-
-
 }
+
 #logo-link
 {
   font-family: 'Permanent Marker', cursive !important;
+  height: auto;
 }
+
 .logo a
 {
   color: #141414;
@@ -90,17 +92,18 @@ a:hover
 .outer
 {
     text-align: center;
+
 }
 
 .feed
 {
   display: inline-block;
-  margin-top: 100px;
-  margin-bottom: 100px;
-  padding: 10px;
+  margin-top: 5%;
+  padding: 1%;
+  margin-bottom: 5%;
   background-color: #ebebeb;
   width: 50%;
-  height: 100%;
+  height: auto;
 }
 
 .green-form
@@ -131,7 +134,13 @@ a:hover
   justify-content: center;
 }
 
-.reg_btn, .login_btn, .edit_btn
+#remember_me-checkbox
+{
+  float: right;
+  padding: 30%;
+}
+
+.green-btn
 {
   margin: auto;
   text-decoration: none;
@@ -158,7 +167,7 @@ input.edit_btn
   margin-top: 5% !important;
 }
 
-.reg_btn:hover, .login_btn:hover, .edit_btn:hover
+.green-btn:hover
 {
   background: #2EE59D;
   box-shadow: 0 15px 20px rgba(46,229,157,.4);
@@ -168,6 +177,11 @@ input.edit_btn
 
 .post
 {
+  display: block;
+  padding-top: 10px;
+  margin:auto;
+  margin-top: 1% !important;
+  text-align: left;
   max-width: 600px;
   max-height: 300px;
 }

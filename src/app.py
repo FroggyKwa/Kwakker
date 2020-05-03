@@ -8,6 +8,7 @@ db_session.global_init("db/db.sqlite")
 app = Flask(__name__, template_folder='../templates', static_folder='../static')
 app.config['SECRET_KEY'] = 'secret_key'
 app.config['UPLOAD_FOLDER'] = '/app/static/img/avatars'
+app.debug = True
 api = Api(app)
 api = add_resources(api)
 

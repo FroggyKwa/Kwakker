@@ -15,6 +15,6 @@ class Post(SqlAlchemyBase, SerializerMixin):
     user_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('users.id'))
     user = relationship('User', back_populates="posts")
     likes = relationship('Like', back_populates='post')
-    tags = relationship('Tags', back_populates='post')
+    tags = relationship('Tag', back_populates='post')
     created_at = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.datetime.now)
 

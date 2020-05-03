@@ -8,12 +8,12 @@ from werkzeug.utils import secure_filename
 from data import db_session
 from data.db_session import create_session
 from data.posts import Post
+from data.tags import Tag, extract_hash_tags
 from src.forms import EditProfileForm, AddPostForm, SearchPostsForm
 from src.app import login_manager, app
 from data.users import get_user_by_username, User
 
 blueprint = Blueprint('views', __name__, template_folder='../templates')
-
 
 
 @blueprint.route('/')
@@ -91,8 +91,14 @@ def add_post():
         session = db_session.create_session()
         post = Post(user=session.query(User).get(current_user.id))
         post.content = content
-        # post.tags = ''
-        session.add(post)
+        hash_tags = extract_hash_tags(content)
+        for hash_tag in hash_tags:
+            tag = Tag()
+            tag.tag = hash_tag
+            tag.post_id = post.id
+            tag.post = post
+            session.add(tag)
+        session.add(post)  # TODO: TO USE API IN FUTURE
         session.commit()
     return render_template('add_post.html', form=form)
 
