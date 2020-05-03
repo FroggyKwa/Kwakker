@@ -1,1 +1,1 @@
-web: gunicorn --bind localhost:80 run_server:app
+web: gunicorn run_server:app
