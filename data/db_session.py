@@ -1,3 +1,5 @@
+import os
+
 import sqlalchemy as sa
 import sqlalchemy.orm as orm
 from sqlalchemy.orm import Session
@@ -26,8 +28,8 @@ def global_init(db_file):
     __factory = orm.sessionmaker(bind=engine)
 
     from . import __all_models
-
-    SqlAlchemyBase.metadata.create_all(engine)
+    if not os.path.isfile(db_file):
+        SqlAlchemyBase.metadata.create_all(engine)
 
 
 def create_session() -> Session:
