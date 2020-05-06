@@ -21,11 +21,12 @@ class PostResource(Resource):
         from api.users import abort_if_user_not_found
         session = db_session.create_session()
         args = self.post_parser.parse_args()
-        post = Post()
-        post.content = args['content']
-        from data.users import User
         user_id = args['user_id']
+        content = args['content']
+        post = Post()
         abort_if_user_not_found(user_id)
+        post.content = content
+        from data.users import User
         post.user = session.query(User).get(user_id)
         hash_tags = extract_hash_tags(post.content)
         for hash_tag in hash_tags:
@@ -69,10 +70,13 @@ class PostListResource(Resource):
         post_id = int(args['post_id'])
         tag = args['tag']
         session = db_session.create_session()
-        left_border = (post_id - 20) if post_id - 20 > 0 else 0
-        right_border = post_id
+        cnt = len(session.query(Post).all()) if post_id == -1 else post_id
+        left_border = cnt - 20
+        right_border = cnt
         if not tag:
-            posts = session.query(Post).slice(left_border, right_border)[::-1]
+            posts = session.query(Post).filter(left_border <= Post.id, Post.id <= right_border)[::-1]
+            for i in posts:
+                print(i.id)
         else:
             try:
                 posts = session.query(Tag).filter(Tag.content.like('%' + tag + '%')).first().posts
