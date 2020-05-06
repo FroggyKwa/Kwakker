@@ -11,11 +11,13 @@ function load_feed()
     {
         var last_id = '-1';
     }
-
-    var new_posts = jQuery.ajax('/api/v01/posts?' + last_id, {
+    if (last_id !== undefined)
+    {
+    var new_posts = jQuery.ajax('/api/v01/posts' + '?post_id=' + last_id, {
         success: function(){
                                 element.innerHTML = element.innerHTML + new_posts.responseJSON; //innerhtml - то что написано внутри тега
                                 last_post.id = '';
                             }
     }); //todo: Ilyaaaaa help
+  }
     }

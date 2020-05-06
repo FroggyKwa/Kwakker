@@ -60,17 +60,17 @@ class PostResource(Resource):
 class PostListResource(Resource):
     def __init__(self):
         self.get_parser = reqparse.RequestParser()
-        self.get_parser.add_argument('post_id', default='-1')
+        self.get_parser.add_argument('post_id')
         self.get_parser.add_argument('tag')
 
     def get(self):
         args = self.get_parser.parse_args()
+        print(args)
         post_id = int(args['post_id'])
         tag = args['tag']
         session = db_session.create_session()
         left_border = (post_id - 20) if post_id - 20 > 0 else 0
         right_border = post_id
-        print(args)
         if not tag:
             posts = session.query(Post).slice(left_border, right_border)[::-1]
         else:
