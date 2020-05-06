@@ -89,7 +89,7 @@ def add_post():
     form = AddPostForm()
     content = form.content.data
     if request.method == 'POST' and content:
-        requests.request('POST', 'http://localhost/api/v01/post',
+        requests.request('POST', 'http://localhost:8080/api/v01/post',
                          data={'content': content, 'user_id': current_user.id})
         return redirect('/feed')
     return render_template('add_post.html', form=form)
