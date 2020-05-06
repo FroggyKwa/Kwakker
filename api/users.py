@@ -1,25 +1,41 @@
-from flask_restful import Resource
+from flask_restful import Resource, reqparse
 from flask import jsonify
-
 from data import db_session
 from data.users import *
 
 
 class UserResource(Resource):
-    def add(self, username, name, surname, age, email, hashed_password):
+    def __init__(self):
+        self.post_parser = reqparse.RequestParser()
+        self.post_parser.add_argument('username', required=True)
+        self.post_parser.add_argument('name', required=True)
+        self.post_parser.add_argument('surname', default='')
+        self.post_parser.add_argument('age')
+        self.post_parser.add_argument('email')
+        self.post_parser.add_argument('password', required=True)
+
+        self.delete_parser = reqparse.RequestParser()
+        self.delete_parser.add_argument('user_id', required=True)
+
+        self.get_parser = reqparse.RequestParser()
+        self.get_parser.add_argument('user_id', required=True)
+
+    def post(self):
         session = db_session.create_session()
+        args = self.post_parser.parse_args()
         user = User()
-        user.email = email
-        user.surname = surname
-        user.username = username
-        user.name = name
-        user.age = age
-        user.hashed_password = hashed_password
+        user.email = args['email']
+        user.surname = args['surname']
+        user.username = args['username']
+        user.name = args['name']
+        user.age = args['age']
+        user.set_password(args['password'])
         session.add(user)
         session.commit()
         return jsonify({'success': 'OK'})
 
-    def delete(self, user_id):
+    def delete(self):
+        user_id = self.delete_parser.parse_args()['user_id']
         abort_if_user_not_found(user_id)
         session = db_session.create_session()
         user = session.query(User).get(user_id)
@@ -27,7 +43,8 @@ class UserResource(Resource):
         session.commit()
         return jsonify({'success': 'OK'})
 
-    def get(self, username):
+    def get(self):
+        username = self.get_parser.parse_args()['username']
         session = db_session.create_session()
         user = session.query(User).filter(User.username == username).first()
         try:

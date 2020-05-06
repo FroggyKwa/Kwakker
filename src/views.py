@@ -1,3 +1,4 @@
+import requests
 import os
 
 from flask import render_template, redirect, url_for, Blueprint, request
@@ -88,31 +89,22 @@ def add_post():
     form = AddPostForm()
     content = form.content.data
     if request.method == 'POST' and content:
-        session = db_session.create_session()
-        post = Post(user=session.query(User).get(current_user.id))
-        post.content = content
-        hash_tags = extract_hash_tags(content)
-        for hash_tag in hash_tags:
-            tag = Tag()
-            tag.tag = hash_tag
-            tag.post_id = post.id
-            tag.post = post
-            session.add(tag)
-        session.add(post)  # TODO: TO USE API IN FUTURE
-        session.commit()
+        requests.request('POST', 'http://localhost/api/v01/post',
+                         data={'content': content, 'user_id': current_user.id})
+        return redirect('/feed')
     return render_template('add_post.html', form=form)
 
 
 @login_required
 @blueprint.route('/search', methods=['GET', 'POST'])
+@blueprint.route('/search/', methods=['GET', 'POST'])
 @blueprint.route('/search/<query>', methods=['GET', 'POST'])
 def search(query=''):
     form = SearchPostsForm()
     if request.method == 'POST':
         if query:
-            hash_tags = query.split('&')
-            pass  # отобразить список постов с хэштэгами hash_tags
-        return redirect(f'/search/{form.query.data}')
+            # отобразить список постов с хэштэгами hash_tags
+            return redirect(f'/search/{form.query.data}')
     return render_template('search.html', form=form, query=query)
 
 
