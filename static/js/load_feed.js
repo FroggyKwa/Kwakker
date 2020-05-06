@@ -12,7 +12,7 @@ function load_feed()
         var last_id = '-1';
     }
 
-    var new_posts = jQuery.ajax('/api/v01/posts/' + last_id, {
+    var new_posts = jQuery.ajax('/api/v01/posts?' + last_id, {
         success: function(){
                                 element.innerHTML = element.innerHTML + new_posts.responseJSON; //innerhtml - то что написано внутри тега
                                 last_post.id = '';
