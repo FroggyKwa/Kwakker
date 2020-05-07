@@ -53,9 +53,11 @@ class PostResource(Resource):
         abort_if_post_not_found(post_id)
         session = db_session.create_session()
         post = session.query(Post).get(post_id)
-        return jsonify(
-            post.to_dict(only=('id', 'tags.content', 'likes', 'content', 'user.name',
-                               'user.surname', 'user.id', 'created_at')))
+
+        return jsonify({'id': post.user_id, 'likes': list(like.to_dict(only=('user_id', 'post_id', 'created_at')) for like in post.likes),
+                        'tags': list(tag.to_dict(only=('content',)) for tag in post.tags),
+                        'user': {'username': post.user.username, 'surname': post.user.surname, 'id': post.user.id},
+                        'created_at': post.created_at})
 
 
 class PostListResource(Resource):
