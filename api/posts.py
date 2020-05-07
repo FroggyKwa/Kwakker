@@ -67,14 +67,14 @@ class PostListResource(Resource):
     def get(self):
         args = self.get_parser.parse_args()
         print(args)
-        post_id = int(args['post_id'])
+        post_id = args['post_id']
         tag = args['tag']
         session = db_session.create_session()
-        cnt = len(session.query(Post).all()) if post_id == -1 else post_id
+        cnt = len(session.query(Post).all()) if not post_id else int(post_id)
         left_border = cnt - 20
-        right_border = cnt
+        right_border = cnt if post_id else cnt + 1
         if not tag:
-            posts = session.query(Post).filter(left_border <= Post.id, Post.id <= right_border)[::-1]
+            posts = session.query(Post).filter(left_border <= Post.id, Post.id < right_border)[::-1]
             for i in posts:
                 print(i.id)
         else:
