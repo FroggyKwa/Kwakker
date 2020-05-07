@@ -183,9 +183,15 @@ input.edit_btn
   padding-top: 10px;
   margin:auto;
   margin-top: 1% !important;
+  margin-bottom: 2% !important;
   text-align: left;
   max-width: 600px;
   max-height: 300px;
+}
+
+#likes
+{
+  text-align: center;
 }
 
 .header-btns

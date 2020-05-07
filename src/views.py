@@ -101,10 +101,6 @@ def add_post():
 @blueprint.route('/search/<query>', methods=['GET', 'POST'])
 def search(query=''):
     form = SearchPostsForm()
-    if request.method == 'POST':
-        if query:
-            # отобразить список постов с хэштэгами hash_tags
-            return redirect(f'/search/{form.query.data}')
     return render_template('search.html', form=form, query=query)
 
 

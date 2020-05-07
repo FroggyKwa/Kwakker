@@ -81,7 +81,12 @@ class PostListResource(Resource):
                 print(i.id)
         else:
             try:
-                posts = session.query(Tag).filter(Tag.content.like('%' + tag + '%')).first().posts
+                tags = session.query(Tag).filter(Tag.content.like(f'%{tag}%')).all()
+                posts = list()
+                for tag in tags:
+                    for post in tag.posts:
+                        posts.append(post)
+                print(posts)
             except AttributeError:  # posts not found
                 posts = []
         return render_template('post_wall.html', posts=posts)

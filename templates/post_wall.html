@@ -14,7 +14,7 @@
     <p>{{  post.content  }}</p>
     <hr>
     {% for tag in post.tags %}
-    <a href="/search/{{tag.content}}">#{{ tag.content }}</a>
+    <a href="/search/{{  tag.content  }}">#{{ tag.content }}</a>
     {% endfor %}
 </div>
 <div id="likes">Лайки: {{  post.likes|length  }}</div>
