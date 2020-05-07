@@ -18,7 +18,7 @@ class UserResource(Resource):
         self.delete_parser.add_argument('user_id', required=True)
 
         self.get_parser = reqparse.RequestParser()
-        self.get_parser.add_argument('user_id', required=True)
+        self.get_parser.add_argument('username', required=True)
 
     def post(self):
         session = db_session.create_session()
