@@ -164,6 +164,11 @@ a:hover, button:hover
   transition: .3s;
 }
 
+.like_btn img
+{
+  width: 30px;
+}
+
 input.edit_btn
 {
   margin-top: 5% !important;

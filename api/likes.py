@@ -63,4 +63,4 @@ class LikeResource(Resource):
         abort_if_post_not_found(post_id)
         post = session.query(Post).get(post_id)
         like = session.query(Like).filter(Like.post_id == post_id, Like.user_id == user_id).first()
-        return like in post.likes
+        return jsonify({'like': like in post.likes})

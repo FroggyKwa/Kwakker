@@ -18,9 +18,10 @@ function load_feed(tags=[])
           last_id = last_post.getAttribute('db_id');
           if (last_id == "1")
           {
-              var btn = document.getElementById("btn");
+              let btn = document.getElementById("btn");
               btn.parentNode.removeChild(btn);
           }
+          check_likes();
                             }
     });
     }

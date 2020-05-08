@@ -16,6 +16,12 @@
     {% for tag in post.tags %}
     <a href="/search/{{  tag.content  }}">#{{ tag.content }}</a>
     {% endfor %}
+    <div id="likes" value={{  post.likes|length  }}>
+        <p>Лайки: {{  post.likes|length  }}</p>
+        <div class="like_btn" liked="false" id={{ post.id }}>
+            <img src="{{ url_for('static', filename='img/like.png')}}">
+        </div>
+    </div>
 </div>
-<div id="likes">Лайки: {{  post.likes|length  }}</div>
+
 {% endfor %}
