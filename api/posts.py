@@ -77,18 +77,17 @@ class PostListResource(Resource):
         right_border = cnt if post_id else cnt + 1
         if not tag:
             posts = session.query(Post).filter(left_border <= Post.id, Post.id < right_border)[::-1]
-            for i in posts:
-                print(i.id)
         else:
-            try:
-                tags = session.query(Tag).filter(Tag.content.like(f'%{tag}%')).all()
-                posts = list()
-                for tag in tags:
+            # ищет только английские посты в insensitive case - solution -> использовать не sqlite
+            tags = session.query(Tag).filter(Tag.content.ilike(f'%{tag}%')).all()
+            posts = list()
+            for tag in tags:
+                try:
                     for post in tag.posts:
                         posts.append(post)
-                print(posts)
-            except AttributeError:  # posts not found
-                posts = []
+                except AttributeError:  # posts not found
+                    pass
+            print(posts)
         return render_template('post_wall.html', posts=posts)
 
 

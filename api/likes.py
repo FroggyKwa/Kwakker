@@ -9,7 +9,6 @@ from data.posts import Post
 from data.users import User
 
 
-
 class LikeResource(Resource):
     def __init__(self):
         self.post_parser = reqparse.RequestParser()
@@ -52,7 +51,7 @@ class LikeResource(Resource):
             post.likes.remove(like)
             session.commit()
             return jsonify({'message': 'OK'})
-        except ValueError: # лайков больше нет
+        except ValueError:  # лайков больше нет
             return jsonify({'message': 'NO LIKES'})
 
     def get(self):
@@ -65,5 +64,3 @@ class LikeResource(Resource):
         post = session.query(Post).get(post_id)
         like = session.query(Like).filter(Like.post_id == post_id, Like.user_id == user_id).first()
         return like in post.likes
-
-
